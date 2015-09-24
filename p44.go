@@ -19,20 +19,20 @@ func pentagonal(n int) int {
 }
 
 func main() {
-	pmap := make(map[int]bool)
-	pmap2 := make(map[int]int)
+	isPentagonal := make(map[int]bool)
+	pmap := make(map[int]int)
 
 	for i := 1; i <= 1000000; i++ {
-		pmap[pentagonal(i)] = true
-		pmap2[i] = pentagonal(i)
+		isPentagonal[pentagonal(i)] = true
+		pmap[i] = pentagonal(i)
 	}
 
 loop:
-	for d := 1; d <= 100000; d++ {
-		for i := 1; i < 1000000; i++ {
-			if _, ok := pmap[pmap2[i+d]-pmap2[i]]; ok {
-				if _, ok2 := pmap[pmap2[i+d]+pmap2[i]]; ok2 {
-					fmt.Println(pmap2[i+d] - pmap2[i]) // 5482660
+	for d := 1; d <= 100000; d++ { // d is distance b/n numbers picked
+		for i := 1; i < 2000; i++ { // i is index of number picked
+			if _, ok := isPentagonal[pmap[i+d]-pmap[i]]; ok {
+				if _, ok2 := isPentagonal[pmap[i+d]+pmap[i]]; ok2 {
+					fmt.Println(pmap[i+d] - pmap[i]) // 5482660
 					break loop
 				}
 			}
