@@ -275,7 +275,7 @@ func highCard(h *Hand) []int {
 	return append([]int{0}, r...)
 }
 
-func setHandValue(h *Hand) []int {
+func determinHandValue(h *Hand) []int {
 	f := flush(h)
 	s := straight(h)
 
