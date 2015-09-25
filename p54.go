@@ -328,10 +328,8 @@ func determinHandValue(h *Hand) []int {
 }
 
 func winner(h1, h2 *Hand) int {
-	one := setHandValue(h1)
-	two := setHandValue(h2)
-
-	fmt.Println(one, two)
+	one := determinHandValue(h1)
+	two := determinHandValue(h2)
 
 	for index, item := range one {
 		if item > two[index] {
