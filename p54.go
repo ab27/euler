@@ -19,9 +19,7 @@ type Card struct {
 }
 
 type Hand struct {
-	cards    []Card
-	strength int // sf: 8, 4ofakind: 7, fullhouse:6...
-	score    int // sum of the ranks of the hand
+	cards []Card
 }
 
 func (h *Hand) getRanks() (ranks []int) {
@@ -275,7 +273,26 @@ func highCard(h *Hand) []int {
 	return append([]int{0}, r...)
 }
 
+func determinHandValue_v2(h *Hand) []int {
+	r := h.getRanks()
+	m := map[int][]int{}
+
+	for i := 0; i < 5; i++ {
+		if _, ok := m[r[i]]; !ok {
+			m[r[i]] = []int{i}
+		} else {
+			m[r[i]] = append(m[r[i]], i)
+		}
+	}
+	// if r := []int{3, 4, 5, 6, 6} m would be
+	// map[6:[3 4] 3:[0] 4:[1] 5:[2]]
+	// can use m to determin quads, fullHouse, set, twoPair
+	// pair, highCard by counting the value for each key
+	return []int{}
+}
+
 func determinHandValue(h *Hand) []int {
+
 	f := flush(h)
 	s := straight(h)
 
