@@ -33,6 +33,7 @@ package main
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
 	"os"
 	"strconv"
@@ -66,10 +67,10 @@ func readLines(path string) ([]string, error) {
 }
 
 // find the sum of the ASCII values in the original text
-func calcSum(ascii []int) (total int) {
+func calcSum(ascii []byte) (total int) {
 	total = 0
 	for _, v := range ascii {
-		total += v
+		total += int(v)
 	}
 	return
 }
@@ -114,14 +115,31 @@ func main() {
 		cipherTxt = append(cipherTxt, num)
 	}
 
-	// for _, v := range []int{65, 67, 32, 100, 97, 70} {
-	for _, v := range cipherTxt {
-		fmt.Print(string(byte(v)))
-	}
-	p()
-	p(string(byte(65 ^ 42)))
-	p(string(byte(107 ^ 42)))
+	var buffer bytes.Buffer
+	plain := ""
 
-	p(len(cipherTxt), 26*26*26, len(words), wordMap["ass"], len(keys), keys[0])
+loop:
+	for _, key := range keys {
+		for k, v := range cipherTxt {
+			buffer.WriteString(string(byte(v ^ key[k%3])))
+		}
+
+		plain = buffer.String()
+		count := 0
+		if len(strings.Split(plain, " ")) > 100 {
+			for ii := 0; ii < 15; ii++ {
+				if wordMap[strings.ToLower(strings.Split(plain, " ")[ii])] {
+					count++
+				}
+			}
+
+			if count > 5 {
+				p(calcSum([]byte(plain))) // 107359
+				break loop
+			}
+		}
+
+		buffer.Reset()
+	}
 
 }
