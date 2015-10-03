@@ -103,10 +103,10 @@ func main() {
 		wordMap[v] = true
 	}
 
+	keys := generateKeys()
+
 	charSlice := strings.Split(lines[0], ",")
 	cipherTxt := []int{}
-
-	keys := generateKeys()
 
 	// convert charSlice elements from string to int
 	for _, v := range charSlice {
