@@ -118,7 +118,6 @@ func main() {
 	var buffer bytes.Buffer
 	plain := ""
 
-loop:
 	for _, key := range keys {
 		for k, v := range cipherTxt {
 			buffer.WriteString(string(byte(v ^ key[k%3])))
@@ -135,7 +134,7 @@ loop:
 
 			if count > 5 {
 				p(calcSum([]byte(plain))) // 107359
-				break loop
+				break
 			}
 		}
 
