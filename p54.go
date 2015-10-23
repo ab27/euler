@@ -1,6 +1,6 @@
 // p054.txt contains poker hands... each line in the file
 // has ten cards first 5 cards are for player 1 and next 5
-// for player 2... how many hands does player 1 win
+// for player 2... how many hands does player 1 win 
 
 package main
 
