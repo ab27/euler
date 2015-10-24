@@ -5,7 +5,7 @@ func isPrime(n int) bool {
 		}
 	}
 	return true
-}
+} 
 
 // given a 4 digit number n, returns a slice of pumutations
 // of the digits
