@@ -60,7 +60,7 @@ func group(primes map[int]struct{}) map[int][]int {
 	return g
 }
 
-func findDifferences(nums []int) {
+func findDifferences(nums []int) string {
 	sort.Ints(nums)
 	count := map[int]int{}
 	difference := 0
@@ -87,7 +87,7 @@ func findDifferences(nums []int) {
 			for i := 0; i < len(v)-1; i++ {
 				for j := i + 1; j < len(v); j++ {
 					if v[i][1] == v[j][0] && nums[0] != 1487 {
-						fmt.Printf("%d%d%d\n", nums[v[i][0]], nums[v[i][1]],
+						return fmt.Sprintf("%d%d%d", nums[v[i][0]], nums[v[i][1]],
 							nums[v[j][1]])
 					}
 				}
@@ -95,6 +95,8 @@ func findDifferences(nums []int) {
 
 		}
 	}
+
+	return ""
 
 }
 
@@ -107,8 +109,13 @@ func main() {
 	}
 
 	grouped := group(primes)
+	result := ""
 	for _, v := range grouped {
-		findDifferences(v)
+		result = findDifferences(v)
+		if result != "" {
+			break
+		}
 	}
-	// 296962999629
+
+	fmt.Println(result) // 296962999629
 }
