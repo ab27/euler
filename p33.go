@@ -139,5 +139,5 @@ func main() {
 	filtered := filter(allFraction)
 	prod := product(filtered)
 	simplified := simplify(prod)
-	p(simplified[1])
+	p(simplified[1]) // 100
 }
