@@ -83,11 +83,13 @@ func filter(fractions [][]int) [][]int {
 			[]int{1, 1}}
 
 		for _, v := range cancelIndex {
+			flip0 := flip(v[0])
+			flip1 := flip(v[1])
 			if numerator[v[0]] == denominator[v[1]] {
-				if simplified == (float64(numerator[flip(v[0])]) /
-					float64(denominator[flip(v[1])])) {
+				if simplified == (float64(numerator[flip0]) /
+					float64(denominator[flip1])) {
 					filtered = append(filtered,
-						[]int{numerator[flip(v[0])], denominator[flip(v[1])]})
+						[]int{numerator[flip0], denominator[flip1]})
 				}
 			}
 		}
