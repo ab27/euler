@@ -3,6 +3,24 @@ import (
 	"os"
 )
 
+
+combinations
+Either use phoxis's very nice solution, or just iterate them lexicographically 
+(this is really the same solution!): Given a binary string of a given length, 
+get the next lexicographic string by finding the rightmost zero entry, change 
+it to a 1, and change everything to the right of it back to a 0, e.g.
+
+0 0 0
+0 0 1
+0 1 0
+0 1 1
+1 0 0
+1 0 1
+1 1 0
+1 1 1
+
+
+
 func isPrime(n int) bool {
 	for i := 2; i <= n/2; i++ {
 		if n%i == 0 {
