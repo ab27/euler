@@ -3,6 +3,15 @@ import (
 	"os"
 )
 
+psudocode
+findCombinations(array,n,sol):
+   if (sol.size == n): //stop condition for the recursion
+      print sol
+      return
+   for each x in array:
+      sol.append(x)
+      findCombinations(array,n-1,sol) //recursive call
+      sol.removeLast() //cleaning up environment
 
 combinations
 Either use phoxis's very nice solution, or just iterate them lexicographically 
