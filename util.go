@@ -3,6 +3,10 @@ import (
 	"os"
 )
 
+// kth bit of n
+// 1 << 4   == 1 0 0 0 
+(n & (1 << k)) >> k
+
 public static class Tuple<X, Y> { 
   public final X x; 
   public final Y y; 
